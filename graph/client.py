@@ -8,7 +8,7 @@ from bsonrpc.framing import (
 leaf1 = node("leaf1")
 leaf2 = node("leaf2")
 
-root = node("root", [leaf1, leaf1, leaf2])
+root = node("root", [leaf1, leaf1, leaf2, leaf2])
 
 root.show()
 
@@ -19,7 +19,7 @@ s.connect(('localhost', 50001))
 rpc = JSONRpc(s,framing_cls=JSONFramingNone)
 server = rpc.get_peer_proxy()
 # Execute in server:
-root = server.increment(root)
-root.show()
+server.printFromServer(toList(root))
+#root.show()
 
 rpc.close() # Closes the socket 's' also

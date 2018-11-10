@@ -15,15 +15,10 @@ def increment(graph):
     for c in graph.children:
         increment(c)
 
-def toDict(graph):
-    dict = {}
-    count = 0
-    dict[graph.name] = graph.val
+
+dictList = []
+def toList(graph):
+    dictList.append([graph.name, graph.val])
     for c in graph.children:
-        if(c.name in dict):
-            name = c.name + "_" + str(count)
-            count += 1
-            dict[name] = c.val
-        else:
-            dict[c.name] = c.val
-    return dict
+        toList(c)
+    return dictList
