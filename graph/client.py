@@ -19,7 +19,8 @@ s.connect(('localhost', 50001))
 rpc = JSONRpc(s,framing_cls=JSONFramingNone)
 server = rpc.get_peer_proxy()
 # Execute in server:
-server.printFromServer(toList(root))
-#root.show()
+rootList = server.increment(toList(root))
+root = toTree(rootList)
+root.show()
 
 rpc.close() # Closes the socket 's' also
